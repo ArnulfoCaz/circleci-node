@@ -31,4 +31,6 @@ jobs:
                         - run: 
                                 command: ~/google-cloud-sdk/bin/gcloud docker -- push gcr.io/${GOOGLE_PROJECT_ID}/circleci-node:$CIRCLE_SHA1
                         - run:
+                                command: ~/google-cloud-sdk/bin/gcloud components install kubectl
+                        - run:
                                 command:  kubectl set image deployment/sample-node sample-node=gcr.io/heb-cp-training/circleci-node:$CIRCLE_SHA1
