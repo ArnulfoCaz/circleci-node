@@ -23,8 +23,10 @@ jobs:
                         - run: 
                                 command: ~/google-cloud-sdk/bin/gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
                         - run: 
+                                command: ~/google-cloud-sdk/bin/gcloud --quiet container clusters get-credentials ${GOOGLE_CLUSTER_NAME}
+                        - run: 
                                 command: docker build -t us.gcr.io/${GOOGLE_PROJECT_ID}/circleci-node:$CIRCLE_SHA1 .
                         - run:
-                                command: docker tag us.gcr.io/${GOOGLE_PROJECT_ID}/circleci-node:$CIRCLE_SHA1 us.gcr.io/${GOOGLE_PROJECT_ID}/circleci-node:latest
+                                command: docker tag gcr.io/${GOOGLE_PROJECT_ID}/circleci-node:$CIRCLE_SHA1 gcr.io/${GOOGLE_PROJECT_ID}/circleci-node:latest
                         - run: 
-                                command: ~/google-cloud-sdk/bin/gcloud docker -- push us.gcr.io/${GOOGLE_PROJECT_ID}/circleci-node:$CIRCLE_SHA1
+                                command: ~/google-cloud-sdk/bin/gcloud docker -- push gcr.io/${GOOGLE_PROJECT_ID}/circleci-node:$CIRCLE_SHA1
