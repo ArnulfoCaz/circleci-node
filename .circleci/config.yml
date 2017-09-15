@@ -25,12 +25,12 @@ jobs:
                         - run: 
                                 command: ~/google-cloud-sdk/bin/gcloud --quiet container clusters get-credentials ${GOOGLE_CLUSTER_NAME}
                         - run: 
-                                command: docker build -t gcr.io/${GOOGLE_PROJECT_ID}/circleci-node:$CIRCLE_SHA1 .
+                                command: docker build -t gcr.io/${GOOGLE_PROJECT_ID}/circleci-node:v2 .
                         - run:
-                                command: docker tag gcr.io/${GOOGLE_PROJECT_ID}/circleci-node:$CIRCLE_SHA1 gcr.io/${GOOGLE_PROJECT_ID}/circleci-node:latest
+                                command: docker tag gcr.io/${GOOGLE_PROJECT_ID}/circleci-node:v2 gcr.io/${GOOGLE_PROJECT_ID}/circleci-node:latest
                         - run: 
-                                command: ~/google-cloud-sdk/bin/gcloud docker -- push gcr.io/${GOOGLE_PROJECT_ID}/circleci-node:$CIRCLE_SHA1
+                                command: ~/google-cloud-sdk/bin/gcloud docker -- push gcr.io/${GOOGLE_PROJECT_ID}/circleci-node:v2
                         - run:
                                 command: ~/google-cloud-sdk/bin/gcloud components install kubectl
                         - run:
-                                command: ~/google-cloud-sdk/bin/kubectl run circleci-node --image=gcr.io/${GOOGLE_PROJECT_ID}/circleci-node:$CIRCLE_SHA1 --port 8080
+                                command: ~/google-cloud-sdk/bin/kubectl run circleci-node --image=gcr.io/${GOOGLE_PROJECT_ID}/circleci-node:v2 --port 8080
