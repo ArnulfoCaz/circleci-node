@@ -27,4 +27,4 @@ jobs:
                         - run:
                                 command: docker tag us.gcr.io/${GOOGLE_PROJECT_ID}/circleci-node:$CIRCLE_SHA1 us.gcr.io/${GOOGLE_PROJECT_ID}/circleci-node:latest
                         - run: 
-                                command: ~/google-cloud-sdk/bin/gcloud docker -- pus us.gcr.io/${GOOGLE_PROJECT_ID}/circleci-node:$CIRCLE_SHA1
+                                command: ~/google-cloud-sdk/bin/gcloud docker -- push us.gcr.io/${GOOGLE_PROJECT_ID}/circleci-node:$CIRCLE_SHA1
